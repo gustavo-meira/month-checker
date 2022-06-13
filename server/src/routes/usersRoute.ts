@@ -1,11 +1,12 @@
 import {
   NextFunction, Request, Response, Router,
 } from 'express';
+import { validateCreateUser } from '../middlewares/validateCreateUser';
 import { createUserController } from '../useCases/CreateUser';
 
 const usersRouter = Router();
 
-usersRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
+usersRouter.post('/', validateCreateUser, (req: Request, res: Response, next: NextFunction) => {
   createUserController.handle(req, res, next);
 });
 
