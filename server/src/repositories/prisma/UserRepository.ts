@@ -1,11 +1,11 @@
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { prisma } from '.';
 import { UserEntity } from '../../entities/UserEntity';
 import { NotFoundError } from '../../errors/NotFoundError';
 import { IUserRepository } from '../IUserRepository';
 
 export class UserRepository implements IUserRepository {
-  private prisma = new PrismaClient();
+  private prisma = prisma;
 
   async create(user: UserEntity): Promise<void> {
     await this.prisma.user.create({
