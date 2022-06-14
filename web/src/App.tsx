@@ -1,3 +1,4 @@
 import React from 'react';
+import { RouteIndex } from './routes';
 
-export const App = () => <div>Oi wolfi</div>;
+export const App = () => <RouteIndex />;
