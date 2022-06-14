@@ -54,7 +54,7 @@ describe('Login User use case', () => {
       .send({ email: 'test@test.com', password: 'testtest' });
 
     expect(response.status).to.equal(400);
-    expect(response.body.message).to.be('"email" or "password" is invalid');
+    expect(response.body.message).to.equal('"email" or "password" is invalid');
   });
 
   it('when the password is not ok should return a error', async () => {
@@ -66,6 +66,6 @@ describe('Login User use case', () => {
       .send({ email: 'test@test.com', password: 'testtest' });
     
     expect(response.status).to.equal(400);
-    expect(response.body.message).to.be('"email" or "password" is invalid');
+    expect(response.body.message).to.equal('"email" or "password" is invalid');
   });
 });
