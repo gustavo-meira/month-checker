@@ -14,11 +14,11 @@ describe('User/Email exist use case', () => {
   beforeEach(() => {
     sinon
       .stub(UserRepository.prototype, 'getByEmail')
-      .resolves();
+      .throwsException();
 
     sinon
       .stub(UserRepository.prototype, 'getByUsername')
-      .resolves();
+      .throwsException();
   });
 
   afterEach(() => {
@@ -67,7 +67,7 @@ describe('User/Email exist use case', () => {
   });
 
   it('should return a conflict error when the username exists', async () => {
-    (UserRepository.prototype.getByUsername as sinon.SinonStub).throwsException();
+    (UserRepository.prototype.getByUsername as sinon.SinonStub).resolves();
 
     const response = await chai
       .request(app)
@@ -79,7 +79,7 @@ describe('User/Email exist use case', () => {
   });
 
   it('should return a conflict error when the email exists', async () => {
-    (UserRepository.prototype.getByEmail as sinon.SinonStub).throwsException();
+    (UserRepository.prototype.getByEmail as sinon.SinonStub).resolves();
 
     const response = await chai
       .request(app)
@@ -91,8 +91,8 @@ describe('User/Email exist use case', () => {
   });
 
   it('should return a conflict error when the username and email exists', async () => {
-    (UserRepository.prototype.getByUsername as sinon.SinonStub).throwsException();
-    (UserRepository.prototype.getByEmail as sinon.SinonStub).throwsException();
+    (UserRepository.prototype.getByUsername as sinon.SinonStub).resolves();
+    (UserRepository.prototype.getByEmail as sinon.SinonStub).resolves();
 
     const response = await chai
       .request(app)
