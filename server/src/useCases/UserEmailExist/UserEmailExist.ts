@@ -24,10 +24,10 @@ export class UserEmailExist implements IUserEmailExist {
         throw new BadRequestError('"username" or "email" is required');
       }
 
-      return false;
+      return true;
     } catch (err: unknown) {
       if (err instanceof BadRequestError) throw err;
-      return true;
+      return false;
     }
   }
 }
